@@ -1,0 +1,56 @@
+{
+    "name": "Combat",
+    "maps": [
+        {
+            "name": "Default",
+            "id": "40667d52-67fc-47ce-b247-0cb8d4e013bf",
+            "actions": [
+                {
+                    "name": "Kick",
+                    "type": "Button",
+                    "id": "9bbcd856-457e-4e3b-94e9-9c7fb4f7e2f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "57fc3602-9a8b-4cb6-8677-f6682914b929",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controls;Keyboard + Mouse",
+                    "action": "Kick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Controls",
+            "bindingGroup": "Controls",
+            "devices": []
+        },
+        {
+            "name": "Keyboard + Mouse",
+            "bindingGroup": "Keyboard + Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
