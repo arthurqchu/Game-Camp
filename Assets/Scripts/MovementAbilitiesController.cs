@@ -23,6 +23,9 @@ public class MovementAbilitiesController : MonoBehaviour
 
     public float wallGrabDistance = 1f;
 
+    public Material lineMaterial;
+    public float ropeWidth;
+
 
 
 
@@ -39,6 +42,8 @@ public class MovementAbilitiesController : MonoBehaviour
     private LineRenderer lr;
     private Vector2 Move;
 
+    private vThirdPersonController controller;
+
     private bool pulling = false;
     private bool jumped = false;
     private bool grounded;
@@ -51,6 +56,7 @@ public class MovementAbilitiesController : MonoBehaviour
         cam = Camera.main;
         lr = GetComponent<LineRenderer>();
         articulation = GetComponent<ArticulationBody>();
+        controller = GetComponent<vThirdPersonController>();
     }
 
     private void Update() {
@@ -106,6 +112,7 @@ public class MovementAbilitiesController : MonoBehaviour
         //Springjoint on right click
         if(joint==null&&input.actionMaps[0].FindAction("RightClick").ReadValue<float>()==1f)
         {
+            controller.SetGrounding(false);
             //Debug.Log("grapple!");
 
             //Makes a sphere at the mouseWorldPosition that we set earlier ^^^
@@ -149,6 +156,8 @@ public class MovementAbilitiesController : MonoBehaviour
         if(joint!=null&&input.actionMaps[0].FindAction("RightClick").ReadValue<float>()==0f)// If there's a SpringJoint but we are not holding down the right mouse button
         {
             //Debug.Log("NO grapple!");
+            controller.SetGrounding(true);
+
             pulling = false;
             Destroy(joint);//Self-explanatory
             Destroy(grappleSphere);//We also destroy the sphere because we're just using it as a way to see the other end of the spring
@@ -159,6 +168,9 @@ public class MovementAbilitiesController : MonoBehaviour
         if(joint!=null)
         {
             lr.enabled = true;
+
+            lr.material = lineMaterial;
+            lr.SetWidth(ropeWidth,ropeWidth);
 
             lr.SetPosition(0, playerTransform.position + Vector3.up);
             if(pulling)

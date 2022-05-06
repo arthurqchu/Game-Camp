@@ -399,5 +399,14 @@ namespace Invector.vCharacterController
             [Tooltip("Speed to Sprint using rigidbody or extra speed if you're using RootMotion")]
             public float sprintSpeed = 6f;
         }
+
+        public void SetGrounding(bool value)
+        {
+            if(value)
+            {
+                groundLayer = 3;
+            }
+            else groundLayer = 0;
+        }
     }
 }
